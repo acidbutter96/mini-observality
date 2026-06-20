@@ -1,0 +1,21 @@
+services:
+    rabbitmq:
+        image: rabbitmq:3-management
+        container_name: mini_observality_rabbit
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+    postgres:
+        image: postgres:16
+        container_name: simple-mailer-postgres
+        environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: root
+            POSTGRES_DB: root
+        ports:
+            - "5433:5432"
+        volumes:
+            - observability_postgres_data:/var/lib/postgresql/data
+
+volumes:
+    observability_postgres_data:
